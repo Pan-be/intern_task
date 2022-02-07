@@ -42,7 +42,6 @@ const paintRow = ({
     status
 }) => {
     const row = mainTable.insertRow(1)
-    row.className = 'data-row'
     const endpointCell = row.insertCell(0)
     const durationCell = row.insertCell(1)
     const startCell = row.insertCell(2)
@@ -59,6 +58,7 @@ const paintTable = () => {
     currentTableState.forEach(rowData => paintRow(rowData))
 }
 
+
 btnFetch.addEventListener('click', async () => {
     btnFetch.disabled = true;
     btnFetch.innerHTML = 'loading...';
@@ -66,7 +66,9 @@ btnFetch.addEventListener('click', async () => {
     console.log(data);
     btnFetch.disabled = false;
     btnFetch.innerHTML = 'FETCH';
-    initialState = data;
     currentTableState = data;
     paintTable()
 });
+
+btnReset.addEventListener('click', () =>
+    document.location.reload())
